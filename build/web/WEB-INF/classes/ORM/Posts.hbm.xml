@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 23, 2021 12:57:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ORM.Posts" table="posts" catalog="merchstore" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userdata" class="ORM.Userdata" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <property name="title" type="string">
+            <column name="title" length="50" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="image" length="65535" not-null="true" />
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="65535" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

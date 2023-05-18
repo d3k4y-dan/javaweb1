@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 23, 2021 12:57:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ORM.Billingdetails" table="billingdetails" catalog="merchstore" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="invoices" class="ORM.Invoices" fetch="select">
+            <column name="invoice_id" not-null="true" />
+        </many-to-one>
+        <many-to-one name="userdata" class="ORM.Userdata" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <property name="fname" type="string">
+            <column name="fname" length="20" not-null="true" />
+        </property>
+        <property name="lname" type="string">
+            <column name="lname" length="20" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="65535" not-null="true" />
+        </property>
+        <property name="city" type="string">
+            <column name="city" length="25" not-null="true" />
+        </property>
+        <property name="country" type="string">
+            <column name="country" length="25" not-null="true" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="15" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

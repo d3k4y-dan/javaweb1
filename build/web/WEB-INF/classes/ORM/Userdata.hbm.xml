@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 23, 2021 12:57:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ORM.Userdata" table="userdata" catalog="merchstore" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <property name="name" type="string">
+            <column name="name" length="100" not-null="true" />
+        </property>
+        <property name="address" type="string">
+            <column name="address" length="65535" not-null="true" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="15" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="email" length="100" not-null="true" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="30" not-null="true" />
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="50" not-null="true" />
+        </property>
+        <property name="date" type="string">
+            <column name="date" length="65535" not-null="true" />
+        </property>
+        <set name="wishlists" table="wishlist" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userId" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Wishlist" />
+        </set>
+        <set name="postses" table="posts" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Posts" />
+        </set>
+        <set name="billingdetailses" table="billingdetails" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Billingdetails" />
+        </set>
+        <set name="carts" table="cart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userId" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Cart" />
+        </set>
+        <set name="reviewses" table="reviews" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Reviews" />
+        </set>
+        <set name="invoiceses" table="invoices" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="buy_userID" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Invoices" />
+        </set>
+        <set name="productdatas" table="productdata" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="user_id" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Productdata" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 23, 2021 12:57:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="ORM.Productdata" table="productdata" catalog="merchstore" optimistic-lock="version">
+        <id name="id" type="java.lang.Integer">
+            <column name="id" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="userdata" class="ORM.Userdata" fetch="select">
+            <column name="user_id" not-null="true" />
+        </many-to-one>
+        <property name="date" type="string">
+            <column name="date" length="65535" not-null="true" />
+        </property>
+        <property name="name" type="string">
+            <column name="name" length="50" not-null="true" />
+        </property>
+        <property name="brand" type="string">
+            <column name="brand" length="50" not-null="true" />
+        </property>
+        <property name="gender" type="string">
+            <column name="gender" length="50" not-null="true" />
+        </property>
+        <property name="category" type="string">
+            <column name="category" length="50" not-null="true" />
+        </property>
+        <property name="description" type="string">
+            <column name="description" length="65535" not-null="true" />
+        </property>
+        <property name="price" type="string">
+            <column name="price" length="50" not-null="true" />
+        </property>
+        <property name="image" type="string">
+            <column name="image" length="65535" not-null="true" />
+        </property>
+        <property name="status" type="string">
+            <column name="status" length="20" not-null="true" />
+        </property>
+        <set name="wishlists" table="wishlist" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="productId" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Wishlist" />
+        </set>
+        <set name="carts" table="cart" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="productId" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Cart" />
+        </set>
+        <set name="reviewses" table="reviews" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_id" not-null="true" />
+            </key>
+            <one-to-many class="ORM.Reviews" />
+        </set>
+        <set name="invoiceProductses" table="invoice_products" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="product_id" not-null="true" />
+            </key>
+            <one-to-many class="ORM.InvoiceProducts" />
+        </set>
+    </class>
+</hibernate-mapping>
